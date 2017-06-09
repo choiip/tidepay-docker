@@ -1,0 +1,57 @@
+version: "3"
+services:
+  isunpayrpc:
+    image: tidepay/rpc
+    container_name: rpc
+    volumes:
+      - ~/.pgpass:/root/.pgpass
+      - ./config/docker.rpc.json:/srv/tidepay/isunpayrpc/config/docker.json
+      - /srv/tidepay/isunpayrpc/node_modules
+    environment:
+      NODE_ENV: docker
+      PORT: 27184
+    ports:
+      - "27184:27184"
+    command: ["node", "build/backend.js"]
+  authd:
+    image: tidepay/authd
+    container_name: authd
+    volumes:
+      - /srv/tidepay/authd/node_modules
+    environment:
+      NODE_ENV: docker
+      PORT: 27183
+    ports:
+      - "27183:27183"
+    command: ["node", "build/backend.js"]
+  blobvault:
+    image: tidepay/blobvault
+    container_name: blobvault
+    volumes:
+      - ~/.pgpass:/root/.pgpass
+      - ./config/docker.blobvault.json:/srv/tidepay/blobvault/config/docker.json
+      - /srv/tidepay/blobvault/node_modules
+    environment:
+      NODE_ENV: docker
+      PORT: 27182
+    ports:
+      - "27182:27182"
+    command: ["node", "build/backend.js"]
+  dataapi:
+    image: tidepay/dataapi
+    container_name: dataapi
+    volumes:
+      - ~/.pgpass:/root/.pgpass
+      - ./config/docker.dataapi.json:/srv/tidepay/dataapi/config/docker.json
+      - /srv/tidepay/dataapi/node_modules
+    environment:
+        NODE_ENV: docker
+        PORT: 27186
+    ports:
+      - "27186:27186"
+    command: ["node", "build/backend.js"]
+  postgres:
+    image: tidepay/postgres
+    container_name: postgres
+    ports:
+      - "5432:5432"

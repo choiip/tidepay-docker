@@ -1,0 +1,47 @@
+{
+    "authd": {
+        "host": "localhost",
+        "port": 27183,
+        "serverName": "authd.tidepay.io"
+    },
+    "blobvault": {
+        "host": "localhost"
+    },
+    "isunpayrpc": {
+        "host": "localhost",
+        "port": 27184
+    },
+    "blobvaultDatabase": {
+        "host": "localhost",
+        "user": "docker",
+        "password": "password",
+        "database": "blobvault_docker"
+    },
+    "fileDatabase": {
+        "host": "192.168.100.118",
+        "port": 27017,
+        "database": "blobvaultfile_staging",
+        "options": {
+            "user": "blobvault",
+            "pass": "password",
+            "auth": {
+                "authdb": "blobvaultfile_staging"
+            }
+        }
+    },
+    "journalDatabase": {
+        "host": "192.168.100.118",
+        "port": 27017,
+        "database": "dataapifile_staging",
+        "options": {
+            "user": "dataapi",
+            "pass": "password",
+            "auth": {
+                "authdb": "dataapifile_staging"
+            }
+        }
+    },
+    "email": {
+        "subjectPrefix": "[Docker] "
+    }
+}
