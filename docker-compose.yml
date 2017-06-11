@@ -1,7 +1,12 @@
 version: "3"
 services:
-  isunpayrpc:
+  rpc:
     image: tidepay/rpc
+    depends_on:
+      - postgresql
+    links:
+      - blobvault
+      - postgresql
     container_name: rpc
     volumes:
       - ~/.pgpass:/root/.pgpass
@@ -26,6 +31,12 @@ services:
     command: ["node", "build/backend.js"]
   blobvault:
     image: tidepay/blobvault
+    depends_on:
+      - postgresql
+      - mongodb
+    links:
+      - postgresql
+      - mongodb
     container_name: blobvault
     volumes:
       - ~/.pgpass:/root/.pgpass
@@ -39,6 +50,11 @@ services:
     command: ["node", "build/backend.js"]
   dataapi:
     image: tidepay/dataapi
+    depends_on:
+      - mongodb
+    links:
+      - mongodb
+      - rpc
     container_name: dataapi
     volumes:
       - ~/.pgpass:/root/.pgpass
@@ -50,8 +66,13 @@ services:
     ports:
       - "27186:27186"
     command: ["node", "build/backend.js"]
-  postgres:
-    image: tidepay/postgres
-    container_name: postgres
+  postgresql:
+    image: tidepay/postgresql
+    container_name: postgresql
     ports:
       - "5432:5432"
+  mongodb:
+    image: tidepay/mongodb
+    container_name: mongodb
+    ports:
+      - 27017:27017

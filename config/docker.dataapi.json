@@ -3,13 +3,13 @@
         "host": "192.168.100.93"
     },
     "isunpayrpc": {
-        "host": "localhost",
+        "host": "rpc",
         "port": 27184
     },
     "dataapiDatabase": {
-        "host": "192.168.100.118",
+        "host": "mongodb",
         "port": 27017,
-        "database": "dataapifile_staging",
+        "database": "dataapifile_docker",
         "options": {
             "user": "dataapi",
             "pass": "password",

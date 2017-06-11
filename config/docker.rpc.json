@@ -1,12 +1,15 @@
 {
+    "authinfo": {
+        "url": "http://localhost:27182/v1/authinfo"
+    },    
     "blobvault": {
-        "url": "http://localhost:27182"
+        "url": "http://blobvault:27182"
     },
     "dataapi": {
         "url": "http://localhost:27186"
     },
     "isunpayrpcDatabase": {
-        "host": "localhost",
+        "host": "postgresql",
         "user": "docker",
         "password": "password",
         "database": "isunpayrpc_docker"

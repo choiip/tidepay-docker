@@ -16,5 +16,8 @@ RUN mongod --logpath /var/log/mongodb.log --dbpath /var/lib/mongodb --directoryp
     && mongo blobvaultfile_docker /tmp/mongodb-createBlobvault.js \
     && mongod --shutdown --dbpath /var/lib/mongodb --directoryperdb
 
+# Add VOLUMEs to allow backup of databases
+VOLUME ["/var/lib/mongodb"]
+
 # Set usr/bin/mongod as the dockerized entry-point application
 ENTRYPOINT ["/usr/bin/mongod", "--dbpath", "/var/lib/mongodb", "--directoryperdb"]
