@@ -12,7 +12,6 @@
     "blobvaultDatabase": {
         "host": "postgresql",
         "user": "docker",
-        "password": "password",
         "database": "blobvault_docker"
     },
     "fileDatabase": {
