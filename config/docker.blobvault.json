@@ -4,7 +4,7 @@
         "serverName": "authd.tidepay.io"
     },
     "blobvault": {
-        "host": "localhost:27182"
+        "host": "localhost"
     },
     "isunpayrpc": {
         "url": "http://rpc:27184"
@@ -22,7 +22,7 @@
             "user": "blobvault",
             "pass": "password",
             "auth": {
-                "authdb": "blobvaultfile_docker"
+                "authdb": ""
             }
         }
     },
@@ -34,7 +34,7 @@
             "user": "dataapi",
             "pass": "password",
             "auth": {
-                "authdb": "dataapifile_docker"
+                "authdb": ""
             }
         }
     },
