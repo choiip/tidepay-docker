@@ -17,7 +17,7 @@ services:
       PORT: 27184
     ports:
       - "27184:27184"
-    command: bash -c "node_modules/.bin/knex migrate:latest --env docker && node build/backend.js"
+    command: bash -c "node_modules/.bin/knex migrate:latest && node build/backend.js"
   authd:
     image: tidepay/authd
     container_name: authd
@@ -47,7 +47,7 @@ services:
       PORT: 27182
     ports:
       - "27182:27182"
-    command: bash -c "node_modules/.bin/knex migrate:latest --env docker && node build/backend.js"
+    command: bash -c "node_modules/.bin/knex migrate:latest && node build/backend.js"
   dataapi:
     image: tidepay/dataapi
     depends_on:
