@@ -1,0 +1,31 @@
+{
+  "name": "tidepay-docker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build:authd": "npm run build:docker --prefix ../authd",
+    "build:blobvault": "npm run build:docker --prefix ../blobvault",
+    "build:dataapi": "npm run build:docker --prefix ../dataapi",
+    "build:rpc": "npm run build:docker --prefix ../isunpayrpc",
+    "build:mongodb": "docker build --tag tidepay/mongodb -f Dockerfile.mongodb .",
+    "build:pg": "docker build --tag tidepay/postgresql -f Dockerfile.postgresql .",
+    "build:server": "npm run build:authd && npm run build:blobvault && npm run build:dataapi && npm run build:rpc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/choiip/tidepay-docker.git"
+  },
+  "keywords": [
+    "tidepay",
+    "docker"
+  ],
+  "author": "Alex Choi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/choiip/tidepay-docker/issues"
+  },
+  "homepage": "https://github.com/choiip/tidepay-docker#readme",
+  "dependencies": {
+  }
+}
