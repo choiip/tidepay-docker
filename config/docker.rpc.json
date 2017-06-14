@@ -14,8 +14,8 @@
         "database": "isunpayrpc_docker"
     },
     "tidepayd": {
-        "rpcUrl": "http://192.168.100.93:15005",
-        "wsUrl": "ws://192.168.100.93:16006",
+        "rpcUrl": "http://dx.tidepay.io:15005",
+        "wsUrl": "ws://dx.tidepay.io:16006",
         "gateway": {
             "public": "tszuaemDXJi8unB94GrVNHbK4TdDKb3J8q",
             "secret": "snmzZYEttMZNf2Z5ojRw6oebuAffj"

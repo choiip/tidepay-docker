@@ -10,7 +10,15 @@
     "build:rpc": "npm run build:docker --prefix ../isunpayrpc",
     "build:mongodb": "docker build --tag tidepay/mongodb -f Dockerfile.mongodb .",
     "build:pg": "docker build --tag tidepay/postgresql -f Dockerfile.postgresql .",
-    "build:server": "npm run build:authd && npm run build:blobvault && npm run build:dataapi && npm run build:rpc"
+    "build:server": "npm run build:authd && npm run build:blobvault && npm run build:dataapi && npm run build:rpc",
+    "pull:authd": "docker pull tidepay/authd",
+    "pull:blobvault": "docker pull tidepay/blobvault",
+    "pull:dataapi": "docker pull tidepay/dataapi",
+    "pull:rpc": "docker pull tidepay/rpc",
+    "pull:mongodb": "docker pull tidepay/mongodb",
+    "pull:pg": "docker pull tidepay/postgresql",        
+    "pull:server": "npm run pull:authd && npm run pull:blobvault && npm run pull:dataapi && npm run pull:rpc",
+    "tidepay": "chmod 600 .pgpass && docker-compose up"
   },
   "repository": {
     "type": "git",

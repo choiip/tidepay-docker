@@ -1,6 +1,6 @@
 {
     "tidepayd": {
-        "host": "192.168.100.93"
+        "host": "dx.tidepay.io"
     },
     "isunpayrpc": {
         "host": "rpc",
