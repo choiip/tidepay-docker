@@ -3,8 +3,7 @@
         "host": "dx.tidepay.io"
     },
     "isunpayrpc": {
-        "host": "rpc",
-        "port": 27184
+        "url": "http://rpc:27184"
     },
     "dataapiDatabase": {
         "host": "mongodb",

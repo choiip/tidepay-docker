@@ -4,9 +4,6 @@ services:
     image: tidepay/rpc
     depends_on:
       - postgresql
-    links:
-      - blobvault
-      - postgresql
     container_name: rpc
     volumes:
       - .pgpass:/root/.pgpass
@@ -17,7 +14,10 @@ services:
       PORT: 27184
     ports:
       - "27184:27184"
-    command: bash -c "node_modules/.bin/knex migrate:latest && node build/backend.js"
+    networks:
+      - public
+      - private      
+    command: bash -c "(node_modules/.bin/knex migrate:latest || echo 'Migration failed') && node build/backend.js"
   authd:
     image: tidepay/authd
     container_name: authd
@@ -28,13 +28,12 @@ services:
       PORT: 27183
     ports:
       - "27183:27183"
+    networks:
+      - public
     command: ["node", "build/backend.js"]
   blobvault:
     image: tidepay/blobvault
     depends_on:
-      - postgresql
-      - mongodb
-    links:
       - postgresql
       - mongodb
     container_name: blobvault
@@ -47,14 +46,14 @@ services:
       PORT: 27182
     ports:
       - "27182:27182"
-    command: bash -c "node_modules/.bin/knex migrate:latest && node build/backend.js"
+    networks:
+      - public
+      - private      
+    command: bash -c "(node_modules/.bin/knex migrate:latest || echo 'Migration failed') && node build/backend.js"
   dataapi:
     image: tidepay/dataapi
     depends_on:
       - mongodb
-    links:
-      - mongodb
-      - rpc
     container_name: dataapi
     volumes:
       - ./config/docker.dataapi.json:/srv/tidepay/dataapi/config/docker.json
@@ -64,14 +63,27 @@ services:
         PORT: 27186
     ports:
       - "27186:27186"
-    command: ["node", "build/backend.js"]
+    networks:
+      - public
+      - private
+    command: bash -c "(node build/liveimport.js || echo 'Fail to start live import') & node build/backend.js"
   postgresql:
     image: tidepay/postgresql
     container_name: postgresql
     ports:
       - "5432:5432"
+    networks:
+      - private
   mongodb:
     image: tidepay/mongodb
     container_name: mongodb
     ports:
       - 27017:27017
+    networks:
+      - private
+
+networks:
+  public:
+    driver: bridge
+  private:
+    driver: bridge
