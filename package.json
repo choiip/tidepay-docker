@@ -18,6 +18,11 @@
     "pull:mongodb": "docker pull tidepay/mongodb",
     "pull:pg": "docker pull tidepay/postgresql",        
     "pull:server": "npm run pull:authd && npm run pull:blobvault && npm run pull:dataapi && npm run pull:rpc",
+    "push:authd": "docker push tidepay/authd",
+    "push:blobvault": "docker push tidepay/blobvault",
+    "push:dataapi": "docker push tidepay/dataapi",
+    "push:rpc": "docker push tidepay/rpc",    
+    "push:server": "npm run push:authd && npm run push:blobvault && npm run push:dataapi && npm run push:rpc",
     "tidepay": "chmod 600 .pgpass && docker-compose up"
   },
   "repository": {
