@@ -23,7 +23,7 @@
     "push:dataapi": "docker push tidepay/dataapi:$DOCKER_TAG",
     "push:rpc": "docker push tidepay/rpc:$DOCKER_TAG",
     "push:server": "npm run push:authd && npm run push:blobvault && npm run push:dataapi && npm run push:rpc",
-    "tidepay": "chmod 600 .pgpass && docker-compose up"
+    "tidepay": "chmod 600 .pgpass && if [[ \"${DOCKER_TAG}\" == \"\" ]]; then DOCKER_TAG=latest docker-compose up; else docker-compose up; fi"
   },
   "repository": {
     "type": "git",

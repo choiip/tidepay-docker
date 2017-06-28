@@ -1,7 +1,7 @@
 version: "3"
 services:
   rpc:
-    image: tidepay/rpc
+    image: tidepay/rpc:${DOCKER_TAG}
     depends_on:
       - postgresql
     container_name: rpc
@@ -19,7 +19,7 @@ services:
       - private      
     command: bash -c "(node_modules/.bin/knex migrate:latest || echo 'Migration failed') && node build/backend.js"
   authd:
-    image: tidepay/authd
+    image: tidepay/authd:${DOCKER_TAG}
     container_name: authd
     volumes:
       - /srv/tidepay/authd/node_modules
@@ -32,7 +32,7 @@ services:
       - public
     command: ["node", "build/backend.js"]
   blobvault:
-    image: tidepay/blobvault
+    image: tidepay/blobvault:${DOCKER_TAG}
     depends_on:
       - postgresql
       - mongodb
@@ -51,7 +51,7 @@ services:
       - private      
     command: bash -c "(node_modules/.bin/knex migrate:latest || echo 'Migration failed') && node build/backend.js"
   dataapi:
-    image: tidepay/dataapi
+    image: tidepay/dataapi:${DOCKER_TAG}
     depends_on:
       - mongodb
     container_name: dataapi
