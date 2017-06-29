@@ -1,0 +1,23 @@
+{
+    "email": {
+        "apiKey": "key-90efc0b1ef24070474bacac45a4710c2",
+        "domain": "mg.tidepay.io",
+        "from": "TidePay <no-reply@mg.tidepay.io>",
+        "subjectPrefix": "[Docker] "
+    },
+    "journalDatabase": {
+        "host": "mongodb",
+        "port": 27017,
+        "database": "dataapifile_docker",
+        "options": {
+            "user": "dataapi",
+            "pass": "password",
+            "auth": {
+                "authdb": ""
+            }
+        }
+    },
+    "notifierMq": {
+        "url": "amqp://rabbitmq:5672"
+    }
+}

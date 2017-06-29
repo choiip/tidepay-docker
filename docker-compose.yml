@@ -67,6 +67,21 @@ services:
       - public
       - private
     command: bash -c "(node build/liveimport.js || echo 'Fail to start live import') & node build/backend.js"
+  notifier:
+    image: tidepay/notifier:${DOCKER_TAG}
+    depends_on:
+      - rabbitmq
+      - mongodb
+    container_name: notifier
+    volumes:
+      - ./config/docker.notifier.json:/srv/tidepay/notifier/config/docker.json
+      - /srv/tidepay/notifier/node_modules
+    environment:
+      NODE_ENV: docker
+    networks:
+      - public
+      - private
+    command: bash -c "(node build/notificator.js || echo 'Fail to start notificator') & node build/uamonitor.js"
   postgresql:
     image: tidepay/postgresql
     container_name: postgresql
@@ -79,6 +94,13 @@ services:
     container_name: mongodb
     ports:
       - 27017:27017
+    networks:
+      - private
+  rabbitmq:
+    image: rabbitmq
+    container_name: rabbitmq
+    ports:
+      - 5672:5672
     networks:
       - private
 

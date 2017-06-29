@@ -38,7 +38,7 @@
             }
         }
     },
-    "email": {
-        "subjectPrefix": "[Docker] "
+    "notifierMq": {
+        "url": "amqp://rabbitmq:5672"
     }
 }
