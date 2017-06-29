@@ -1,8 +1,8 @@
 {
     "email": {
-        "apiKey": "key-90efc0b1ef24070474bacac45a4710c2",
-        "domain": "mg.tidepay.io",
-        "from": "TidePay <no-reply@mg.tidepay.io>",
+        "apiKey": "apiKey",
+        "domain": "domain",
+        "from": "from <no-reply@domain.com>",
         "subjectPrefix": "[Docker] "
     },
     "journalDatabase": {
